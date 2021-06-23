@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <el-button type="success" plain>成功按钮</el-button>
     <router-view/>
   </div>
 </template>
