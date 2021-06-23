@@ -53,7 +53,8 @@ export default {
         if (valid) {
           // 先把this存起来
           const _this = this;
-          this.$axios.post('http://localhost:9999/login', this.ruleForm).then(res => {
+          this.$axios.post('/login', this.ruleForm).then(res => {
+
             // 这个参数要分享到所有的组件
             const jwt = res.headers['authorization']
             const userInfo = res.data.data
@@ -63,7 +64,6 @@ export default {
             _this.$store.commit("SET_USERINFO", userInfo)
             // 也可以通过这种方式调用getter方法来获取用户信息
             console.log(_this.$store.getters.getUserInfo)
-
             // 跳转到详情页面
             _this.$router.push("/blogs")
 
