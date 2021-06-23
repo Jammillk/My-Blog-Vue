@@ -3,11 +3,13 @@
     <el-container>
       <el-header>
         <img class="myLogo" src="https://tanjiaming99.com/upload/2021/06/moving-e1d876a16627470290ab2275756deb27.gif">
+        <!--        <img class="myLogo" src="E:\my_code_way\studu_project\blog_project_learn_vue\src\assets\nlogo.jpg">-->
       </el-header>
       <el-main>
 
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="login-ruleForm">
-          <el-form-item label="用户名" prop="username">
+          <el-form-item label="用户名" prop="ff
+          username">
             <el-input v-model="ruleForm.username"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
@@ -30,8 +32,8 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: '',
-        password: ''
+        username: 'tim',
+        password: '111111'
       },
       rules: {
         username: [
@@ -40,7 +42,7 @@ export default {
         ],
         password: [
           {required: true, message: '请输入密码', trigger: 'blur'},
-          {min: 8, max: 20, message: '长度在 8 到 20 个字符', trigger: 'blur'}
+          {min: 5, max: 20, message: '长度在 5 到 20 个字符', trigger: 'blur'}
         ]
       }
     };
@@ -49,7 +51,25 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          // 先把this存起来
+          const _this = this;
+          this.$axios.post('http://localhost:9999/login', this.ruleForm).then(res => {
+            // 这个参数要分享到所有的组件
+            const jwt = res.headers['authorization']
+            const userInfo = res.data.data
+
+            // 存储数据，共享
+            _this.$store.commit("SET_TOKEN", jwt)
+            _this.$store.commit("SET_USERINFO", userInfo)
+            // 也可以通过这种方式调用getter方法来获取用户信息
+            console.log(_this.$store.getters.getUserInfo)
+
+            // 跳转到详情页面
+            _this.$router.push("/blogs")
+
+          })
+
+
         } else {
           console.log('error submit!!');
           return false;
@@ -102,7 +122,7 @@ body > .el-container {
   margin-top: 3px;
 }
 
-.login-ruleForm{
+.login-ruleForm {
   max-width: 500px;
   margin: 0 auto;
 }
