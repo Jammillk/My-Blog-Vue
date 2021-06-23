@@ -34,7 +34,7 @@ export default new Vuex.Store({
   },
   getters: {
     // get
-    getUserInfo:state => {
+    getUserInfo: state => {
       return state.userInfo;
     }
   },
