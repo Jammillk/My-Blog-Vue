@@ -27,8 +27,10 @@ export default new Vuex.Store({
       // 就是把属性全部置为空
       state.token = ''
       state.userInfo = {}
-      localStorage.setItem("token", '')
-      sessionStorage.setItem("userInfo", '')
+      // localStorage.setItem("token", '')
+      // sessionStorage.setItem("userInfo", '')
+      localStorage.removeItem("token")
+      localStorage.removeItem("userInfo")
     }
 
   },

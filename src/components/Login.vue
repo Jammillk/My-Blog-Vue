@@ -66,9 +66,7 @@ export default {
             console.log(_this.$store.getters.getUserInfo)
             // 跳转到详情页面
             _this.$router.push("/blogs")
-
           })
-
 
         } else {
           console.log('error submit!!');
