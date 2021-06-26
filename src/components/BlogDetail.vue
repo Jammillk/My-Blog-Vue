@@ -8,6 +8,9 @@
           编辑
         </router-link>
       </el-link>
+      <el-link class="delete-icon" icon="el-icon-delete" v-if="isOwner" @click="deleteBlog">
+          删除
+      </el-link>
       <el-divider></el-divider>
       <div class="markdown-body" v-html="blog.content">
 
@@ -19,6 +22,7 @@
 <script>
 import Header from "./Header";
 import 'github-markdown-css/github-markdown.css'
+import Router from "vue-router";
 
 export default {
   name: "BlogDetail",
@@ -53,6 +57,17 @@ export default {
       _this.isOwner = blog.userId === _this.$store.getters.getUserInfo.id
 
     })
+  },
+  methods: {
+    deleteBlog: function (){
+      const _this = this
+      const blogId = this.$route.params.blogId;
+      this.$axios.get('/delete/' + blogId).then(res => {
+        console.log('删除成功')
+        this.$router.push("/")
+      })
+
+    }
   }
 }
 </script>
@@ -68,5 +83,9 @@ export default {
 
 .blog h2 {
   text-align: center;
+}
+
+.delete-icon{
+  margin-left: 20px;
 }
 </style>

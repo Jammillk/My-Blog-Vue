@@ -54,7 +54,6 @@ export default {
           // 先把this存起来
           const _this = this;
           this.$axios.post('/login', this.ruleForm).then(res => {
-
             // 这个参数要分享到所有的组件
             const jwt = res.headers['authorization']
             const userInfo = res.data.data
