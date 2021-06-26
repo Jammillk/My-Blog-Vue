@@ -2,14 +2,13 @@
   <div>
     <el-container>
       <el-header>
-        <img class="myLogo" src="https://tanjiaming99.com/upload/2021/06/moving-e1d876a16627470290ab2275756deb27.gif">
+        <img class="myLogo" @click="goHome" src="https://tanjiaming99.com/upload/2021/06/moving-e1d876a16627470290ab2275756deb27.gif">
         <!--        <img class="myLogo" src="E:\my_code_way\studu_project\blog_project_learn_vue\src\assets\nlogo.jpg">-->
       </el-header>
       <el-main>
 
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="login-ruleForm">
-          <el-form-item label="用户名" prop="ff
-          username">
+          <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
@@ -17,8 +16,8 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-            <el-button @click="resetForm('ruleForm')">重置</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')" icon="el-icon-user-solid">登录</el-button>
+            <el-button @click="toLogin" icon="el-icon-user">注册</el-button>
           </el-form-item>
         </el-form>
       </el-main>
@@ -32,8 +31,8 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: 'tim',
-        password: '111111'
+        username: '',
+        password: ''
       },
       rules: {
         username: [
@@ -73,9 +72,18 @@ export default {
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    goHome(){
+      // console.log('回首页')
+      this.$router.push('/')
+    },
+    toLogin(){
+      // console.log("跳转到github登录页面")
+      // window.location.href = "https://github.com/login/oauth/authorize?client_id=84a49f5bbcdb63b7b5a2"
+      this.$router.push('/register')
+
     }
+
+
   }
 }
 </script>

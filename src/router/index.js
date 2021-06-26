@@ -4,7 +4,7 @@ import Login from "../components/Login";
 import Blogs from "../components/Blogs";
 import BlogDetail from "../components/BlogDetail";
 import BlogEdit from "../components/BlogEdit";
-
+import Register from "../components/Register";
 
 Vue.use(Router)
 
@@ -13,34 +13,38 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
+      username: 'Index',
       redirect: {name: "Blogs"}
     }, {
       path: '/blogs',
-      name: 'Blogs',
+      username: 'Blogs',
       component: Blogs
     }, {
       path: '/login',
-      name: 'Login',
+      username: 'Login',
       component: Login
     }, {
       path: '/blog/add',
-      name: 'BlogEdit',
+      username: 'BlogEdit',
       component: BlogEdit,
       meta: {
         requireAuth: true
       }
     }, {
       path: '/blog/:blogId',
-      name: 'BlogDetail',
+      username: 'BlogDetail',
       component: BlogDetail
     }, {
       path: '/blog/:blogId/edit',
-      name: 'BlogEdit',
+      username: 'BlogEdit',
       component: BlogEdit,
       meta: {
         requireAuth: true
       }
+    }, {
+      path: '/register',
+      username: 'Register',
+      component: Register
     }
   ]
 })

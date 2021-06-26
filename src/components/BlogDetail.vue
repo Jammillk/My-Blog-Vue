@@ -63,7 +63,7 @@ export default {
       const _this = this
       const blogId = this.$route.params.blogId;
       this.$axios.get('/delete/' + blogId).then(res => {
-        console.log('删除成功')
+        // console.log('删除成功')
         this.$router.push("/")
       })
 
